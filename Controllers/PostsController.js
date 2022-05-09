@@ -38,6 +38,29 @@ function getAllPosts(req, res){
         })
 };
 
+function updatePosts(req, res){
+    const {category, title, content, id} =req.body
+    const queryStrings= "UPDATE posts SET category = ?, title = ?, content = ? WHERE id = 6"
+    getConnection().query(queryStrings, [title, category, content, id], (err, row, fields) => {
+        if(err){
+            res.json({
+                "status": err.toString()
+                
+              })
+              
+            return
+            } else {
+              res.send({
+                status: "post updted"
+              });
+            }
+            
+            res.end()
+        })
+
+}
+
+
 
 const pool = mysql.createPool({
     host: 'localhost',
@@ -53,8 +76,9 @@ function getConnection() {
 
 module.exports = {
     getAllPosts,
-    // getPostsByID
-    createPosts
+    // getPostsByID,
+    createPosts,
+    updatePosts
 
     
 }
