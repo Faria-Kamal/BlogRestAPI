@@ -10,5 +10,5 @@ const PostsRouter = require("./Routers/PostsRouter")
 app.use("/posts", PostsRouter)
 
 
-app.listen(5000, ()=>console.log("Listening on: 5000"));
+app.listen(7000, ()=>console.log("Listening on: 7000"));
 

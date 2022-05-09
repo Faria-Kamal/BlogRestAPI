@@ -10,12 +10,12 @@ function getAllPosts(req, res){
     })
 }
 
-// function getPostsByID(req, res){
-//     const id = req.params
-//     getConnection().query(`SELECT * FROM posts WHERE id=${id}`, (err, row, fields) => {
-//         res.json(row)
-//     })
-// }
+function getPostsById(req, res){
+    const {id} = req.params
+    getConnection().query(`SELECT * FROM posts WHERE id=${id}`, (err, row, fields) => {
+        res.json(row)
+    })
+}
 
  function createPosts(req, res){
     const {category, title, content} =req.body
@@ -76,7 +76,7 @@ function getConnection() {
 
 module.exports = {
     getAllPosts,
-    // getPostsByID,
+    getPostsById,
     createPosts,
     updatePosts
 
