@@ -60,6 +60,28 @@ function updatePosts(req, res){
 
 }
 
+function  removePost(req, res){
+  const {id} = req.body
+  const query = "DELETE FROM posts WHERE id = ?"
+  getConnection().query(query, [id], (err, row, fields) => {
+      if(err){
+          res.json({
+              "status": err.toString()
+              
+            })
+            
+          return
+          } else {
+            res.send({
+              status: "post delete"
+            });
+          }
+          
+          res.end()
+      })
+  
+}
+
 
 
 const pool = mysql.createPool({
@@ -78,7 +100,8 @@ module.exports = {
     getAllPosts,
     getPostsById,
     createPosts,
-    updatePosts
+    updatePosts,
+    removePost
 
     
 }
